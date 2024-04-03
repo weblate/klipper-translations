@@ -406,6 +406,9 @@ class HelperTLE5012B:
                        parser=lambda x: int(x, 0))
         self._write_reg(reg, val)
 
+BYTES_PER_SAMPLE = 3
+SAMPLES_PER_BLOCK = bulk_sensor.MAX_BULK_MSG_SIZE // BYTES_PER_SAMPLE
+
 SAMPLE_PERIOD = 0.000400
 
 class Angle:
@@ -431,7 +434,7 @@ class Angle:
         self.oid = oid = mcu.create_oid()
         self.sensor_helper = sensor_class(config, self.spi, oid)
         # Setup mcu sensor_spi_angle bulk query code
-        self.query_spi_angle_cmd = self.query_spi_angle_end_cmd = None
+        self.query_spi_angle_cmd = None
         mcu.add_config_cmd(
             "config_spi_angle oid=%d spi_oid=%d spi_angle_type=%s"
             % (oid, self.spi.get_oid(), sensor_type))
@@ -439,11 +442,11 @@ class Angle:
             "query_spi_angle oid=%d clock=0 rest_ticks=0 time_shift=0"
             % (oid,), on_restart=True)
         mcu.register_config_callback(self._build_config)
-        mcu.register_response(self._handle_spi_angle_data,
-                              "spi_angle_data", oid)
-        # API server endpoints
-        self.api_dump = motion_report.APIDumpHelper(
-            self.printer, self._api_update, self._api_startstop, 0.100)
+        self.bulk_queue = bulk_sensor.BulkDataQueue(mcu, oid=oid)
+        # Process messages in batches
+        self.batch_bulk = bulk_sensor.BatchBulkHelper(
+            self.printer, self._process_batch,
+            self._start_measurements, self._finish_measurements, BATCH_UPDATES)
         self.name = config.get_name().split()[1]
         wh = self.printer.lookup_object('webhooks')
         wh.register_mux_endpoint("angle/dump_angle", "sensor", self.name,
@@ -456,9 +459,6 @@ class Angle:
         self.query_spi_angle_cmd = self.mcu.lookup_command(
             "query_spi_angle oid=%c clock=%u rest_ticks=%u time_shift=%c",
             cq=cmdqueue)
-        self.query_spi_angle_end_cmd = self.mcu.lookup_query_command(
-            "query_spi_angle oid=%c clock=%u rest_ticks=%u time_shift=%c",
-            "spi_angle_end oid=%c sequence=%hu", oid=self.oid, cq=cmdqueue)
     def get_status(self, eventtime=None):
         return {'temperature': self.sensor_helper.last_temperature}
     # Measurement collection
@@ -557,10 +557,8 @@ class Angle:
         if not self.is_measuring():
             return
         # Halt bulk reading
-        params = self.query_spi_angle_end_cmd.send([self.oid, 0, 0, 0])
-        self.start_clock = 0
-        with self.lock:
-            self.raw_samples = []
+        self.query_spi_angle_cmd.send_wait_ack([self.oid, 0, 0, 0])
+        self.bulk_queue.clear_samples()
         self.sensor_helper.last_temperature = None
         logging.info("Stopped angle '%s' measurements", self.name)
     def _api_startstop(self, is_start):

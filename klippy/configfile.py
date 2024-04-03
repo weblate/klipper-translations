@@ -143,6 +143,8 @@ class PrinterConfig:
         self.printer = printer
         self.autosave = None
         self.deprecated = {}
+        self.runtime_warnings = []
+        self.deprecate_warnings = []
         self.status_raw_config = {}
         self.status_save_pending = {}
         self.status_settings = {}
@@ -311,6 +313,11 @@ class PrinterConfig:
                  "======================="]
         self.printer.set_rollover_info("config", "\n".join(lines))
     # Status reporting
+    def runtime_warning(self, msg):
+        logging.warn(msg)
+        res = {'type': 'runtime_warning', 'message': msg}
+        self.runtime_warnings.append(res)
+        self.status_warnings = self.runtime_warnings + self.deprecate_warnings
     def deprecate(self, section, option, value=None, msg=None):
         self.deprecated[(section, option, value)] = msg
     def _build_status(self, config):
@@ -322,7 +329,7 @@ class PrinterConfig:
         self.status_settings = {}
         for (section, option), value in config.access_tracking.items():
             self.status_settings.setdefault(section, {})[option] = value
-        self.status_warnings = []
+        self.deprecate_warnings = []
         for (section, option, value), msg in self.deprecated.items():
             if value is None:
                 res = {'type': 'deprecated_option'}
@@ -331,7 +338,8 @@ class PrinterConfig:
             res['message'] = msg
             res['section'] = section
             res['option'] = option
-            self.status_warnings.append(res)
+            self.deprecate_warnings.append(res)
+        self.status_warnings = self.runtime_warnings + self.deprecate_warnings
     def get_status(self, eventtime):
         return {'config': self.status_raw_config,
                 'settings': self.status_settings,
