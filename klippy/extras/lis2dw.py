@@ -30,21 +30,14 @@ LIS2DW_DEV_ID = 0x44
 FREEFALL_ACCEL = 9.80665
 SCALE = FREEFALL_ACCEL * 1.952 / 4
 
-BYTES_PER_SAMPLE = 6
-SAMPLES_PER_BLOCK = bulk_sensor.MAX_BULK_MSG_SIZE // BYTES_PER_SAMPLE
+BATCH_UPDATES = 0.100
 
 # Printer class that controls LIS2DW chip
 class LIS2DW:
     def __init__(self, config):
         self.printer = config.get_printer()
         adxl345.AccelCommandHelper(config, self)
-        self.query_rate = 0
-        am = {'x': (0, SCALE), 'y': (1, SCALE), 'z': (2, SCALE),
-              '-x': (0, -SCALE), '-y': (1, -SCALE), '-z': (2, -SCALE)}
-        axes_map = config.getlist('axes_map', ('x','y','z'), count=3)
-        if any([a not in am for a in axes_map]):
-            raise config.error("Invalid lis2dw axes_map parameter")
-        self.axes_map = [am[a.strip()] for a in axes_map]
+        self.axes_map = adxl345.read_axes_map(config, SCALE, SCALE, SCALE)
         self.data_rate = 1600
         # Measurement storage (accessed from background thread)
         self.lock = threading.Lock()
@@ -59,14 +52,14 @@ class LIS2DW:
         mcu.add_config_cmd("query_lis2dw oid=%d rest_ticks=0"
                            % (oid,), on_restart=True)
         mcu.register_config_callback(self._build_config)
-        self.bulk_queue = bulk_sensor.BulkDataQueue(mcu, oid=oid)
-        # Clock tracking
-        self.last_sequence = self.max_query_duration = 0
-        self.last_limit_count = self.last_error_count = 0
-        self.clock_sync = adxl345.ClockSyncRegression(self.mcu, 640)
-        # API server endpoints
-        self.api_dump = motion_report.APIDumpHelper(
-            self.printer, self._api_update, self._api_startstop, 0.100)
+        # Bulk sample message reading
+        chip_smooth = self.data_rate * BATCH_UPDATES * 2
+        self.ffreader = bulk_sensor.FixedFreqReader(mcu, chip_smooth, "<hhh")
+        self.last_error_count = 0
+        # Process messages in batches
+        self.batch_bulk = bulk_sensor.BatchBulkHelper(
+            self.printer, self._process_batch,
+            self._start_measurements, self._finish_measurements, BATCH_UPDATES)
         self.name = config.get_name().split()[-1]
         wh = self.printer.lookup_object('webhooks')
         wh.register_mux_endpoint("lis2dw/dump_lis2dw", "sensor", self.name,
@@ -76,8 +69,8 @@ class LIS2DW:
         cmdqueue = self.spi.get_command_queue()
         self.query_lis2dw_cmd = self.mcu.lookup_command(
             "query_lis2dw oid=%c rest_ticks=%u", cq=cmdqueue)
-        self.clock_updater.setup_query_command(
-            self.mcu, "query_lis2dw_status oid=%c", oid=self.oid, cq=cmdqueue)
+        self.ffreader.setup_query_command("query_lis2dw_status oid=%c",
+                                          oid=self.oid, cq=cmdqueue)
     def read_reg(self, reg):
         params = self.spi.spi_transfer([reg | REG_MOD_READ, 0x00])
         response = bytearray(params['response'])
@@ -91,48 +84,21 @@ class LIS2DW:
                     "This is generally indicative of connection problems "
                     "(e.g. faulty wiring) or a faulty lis2dw chip." % (
                         reg, val, stored_val))
-    # Measurement collection
-    def is_measuring(self):
-        return self.query_rate > 0
-    def _handle_lis2dw_data(self, params):
-        with self.lock:
-            self.raw_samples.append(params)
-    def _extract_samples(self, raw_samples):
-        # Load variables to optimize inner loop below
+    def start_internal_client(self):
+        aqh = adxl345.AccelQueryHelper(self.printer)
+        self.batch_bulk.add_client(aqh.handle_batch)
+        return aqh
+    # Measurement decoding
+    def _convert_samples(self, samples):
         (x_pos, x_scale), (y_pos, y_scale), (z_pos, z_scale) = self.axes_map
-        last_sequence = self.last_sequence
-        time_base, chip_base, inv_freq = self.clock_sync.get_time_translation()
-        # Process every message in raw_samples
-        count = seq = 0
-        samples = [None] * (len(raw_samples) * SAMPLES_PER_BLOCK)
-        for params in raw_samples:
-            seq_diff = (last_sequence - params['sequence']) & 0xffff
-            seq_diff -= (seq_diff & 0x8000) << 1
-            seq = last_sequence - seq_diff
-            d = bytearray(params['data'])
-            msg_cdiff = seq * SAMPLES_PER_BLOCK - chip_base
-
-            for i in range(len(d) // BYTES_PER_SAMPLE):
-                d_xyz = d[i*BYTES_PER_SAMPLE:(i+1)*BYTES_PER_SAMPLE]
-                xlow, xhigh, ylow, yhigh, zlow, zhigh = d_xyz
-                # Merge and perform twos-complement
-
-                rx = (((xhigh << 8) | xlow)) - ((xhigh & 0x80) << 9)
-                ry = (((yhigh << 8) | ylow)) - ((yhigh & 0x80) << 9)
-                rz = (((zhigh << 8) | zlow)) - ((zhigh & 0x80) << 9)
-
-                raw_xyz = (rx, ry, rz)
-
-                x = round(raw_xyz[x_pos] * x_scale, 6)
-                y = round(raw_xyz[y_pos] * y_scale, 6)
-                z = round(raw_xyz[z_pos] * z_scale, 6)
-
-                ptime = round(time_base + (msg_cdiff + i) * inv_freq, 6)
-                samples[count] = (ptime, x, y, z)
-                count += 1
-        self.clock_sync.set_last_chip_clock(seq * SAMPLES_PER_BLOCK + i)
-        del samples[count:]
-        return samples
+        count = 0
+        for ptime, rx, ry, rz in samples:
+            raw_xyz = (rx, ry, rz)
+            x = round(raw_xyz[x_pos] * x_scale, 6)
+            y = round(raw_xyz[y_pos] * y_scale, 6)
+            z = round(raw_xyz[z_pos] * z_scale, 6)
+            samples[count] = (round(ptime, 6), x, y, z)
+            count += 1
     # Start, stop, and process message batches
     def _start_measurements(self):
         if self.is_measuring():
@@ -161,13 +127,12 @@ class LIS2DW:
         with self.lock:
             self.raw_samples = []
         # Start bulk reading
-        self.bulk_queue.clear_samples()
         rest_ticks = self.mcu.seconds_to_clock(4. / self.data_rate)
         self.query_lis2dw_cmd.send([self.oid, rest_ticks])
         self.set_reg(REG_LIS2DW_FIFO_CTRL, 0xC0)
         logging.info("LIS2DW starting '%s' measurements", self.name)
         # Initialize clock tracking
-        self.clock_updater.note_start()
+        self.ffreader.note_start()
         self.last_error_count = 0
     def _finish_measurements(self):
         if not self.is_measuring():
@@ -175,19 +140,16 @@ class LIS2DW:
         # Halt bulk reading
         self.set_reg(REG_LIS2DW_FIFO_CTRL, 0x00)
         self.query_lis2dw_cmd.send_wait_ack([self.oid, 0])
-        self.bulk_queue.clear_samples()
+        self.ffreader.note_end()
         logging.info("LIS2DW finished '%s' measurements", self.name)
         self.set_reg(REG_LIS2DW_FIFO_CTRL, 0x00)
     def _process_batch(self, eventtime):
-        self.clock_updater.update_clock()
-        raw_samples = self.bulk_queue.pull_samples()
-        if not raw_samples:
-            return {}
-        samples = self._extract_samples(raw_samples)
+        samples = self.ffreader.pull_samples()
+        self._convert_samples(samples)
         if not samples:
             return {}
         return {'data': samples, 'errors': self.last_error_count,
-                'overflows': self.clock_updater.get_last_overflows()}
+                'overflows': self.ffreader.get_last_overflows()}
 
 def load_config(config):
     return LIS2DW(config)

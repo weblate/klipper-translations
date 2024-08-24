@@ -543,8 +543,7 @@ class Angle:
         logging.info("Starting angle '%s' measurements", self.name)
         self.sensor_helper.start()
         # Start bulk reading
-        with self.lock:
-            self.raw_samples = []
+        self.bulk_queue.clear_queue()
         self.last_sequence = 0
         systime = self.printer.get_reactor().monotonic()
         print_time = self.mcu.estimated_print_time(systime) + MIN_MSG_TIME
@@ -558,20 +557,21 @@ class Angle:
             return
         # Halt bulk reading
         self.query_spi_angle_cmd.send_wait_ack([self.oid, 0, 0, 0])
-        self.bulk_queue.clear_samples()
+        self.bulk_queue.clear_queue()
         self.sensor_helper.last_temperature = None
         logging.info("Stopped angle '%s' measurements", self.name)
-    def _api_startstop(self, is_start):
-        if is_start:
-            self._start_measurements()
-        else:
-            self._finish_measurements()
-    def _handle_dump_angle(self, web_request):
-        self.api_dump.add_client(web_request)
-        hdr = ('time', 'angle')
-        web_request.send({'header': hdr})
-    def start_internal_client(self):
-        return self.api_dump.add_internal_client()
+    def _process_batch(self, eventtime):
+        if self.sensor_helper.is_tcode_absolute:
+            self.sensor_helper.update_clock()
+        raw_samples = self.bulk_queue.pull_queue()
+        if not raw_samples:
+            return {}
+        samples, error_count = self._extract_samples(raw_samples)
+        if not samples:
+            return {}
+        offset = self.calibration.apply_calibration(samples)
+        return {'data': samples, 'errors': error_count,
+                'position_offset': offset}
 
 def load_config_prefix(config):
     return Angle(config)
