@@ -1,16 +1,18 @@
 # Alvaro <alvaro@null.net>, 2022.
 # Francisco Javier Hoyos Arango <cofhal@gmail.com>, 2023.
+# Francisco Serrador <fserrador@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: yifeiding@protonmail.com\n"
-"PO-Revision-Date: 2023-10-17 04:11+0000\n"
-"Last-Translator: Francisco Javier Hoyos Arango <cofhal@gmail.com>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/klipper/sdcard_updates/es/>\n"
+"PO-Revision-Date: 2024-10-16 22:36+0000\n"
+"Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/klipper/"
+"sdcard_updates/es/>\n"
 "Language: es\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1\n"
+"X-Generator: Weblate 5.8-rc\n"
 
 #, fuzzy
 msgid ""
@@ -34,7 +36,7 @@ msgstr ""
 "procedimiento de actualización a través de ssh."
 
 msgid "Typical Upgrade Procedure"
-msgstr ""
+msgstr "Procedimiento de Modernización Típico"
 
 msgid ""
 "The procedure for updating MCU firmware using the SD Card is similar to that"
@@ -92,6 +94,10 @@ msgid ""
 "firmware. The initial flashing procedure must be done manually per the "
 "instructions that apply to your controller board."
 msgstr ""
+"Como mencioné en la introducción, este método solo funciona para "
+"modernización del firmware. El procedimiento de flaseado inicial debe ser "
+"hecho manualmente por las instrucciones que aplicar a su placa del "
+"controlador."
 
 msgid ""
 "While it is possible to flash a build that changes the Serial Baud or "
@@ -210,6 +216,24 @@ msgid ""
 "  -b <baud>       serial baud rate (default is 250000)\n"
 "  -f <firmware>   path to klipper.bin\n"
 msgstr ""
+"./scripts/flash-sdcard.sh -h\n"
+"Utilidad de subida de la Tarjeta SD para Klipper\n"
+"\n"
+"Modo de empleo: flash_sdcard.sh [-h] [-l] [-c] [-b <baud>] [-f <firmware>]\n"
+"                       <dispositivo> <placa>\n"
+"\n"
+"argumentos posicionales:\n"
+"  <dispositivo>        puerto seria del dispositivo\n"
+"  <tarjeta>         tipo de tarjeta\n"
+"\n"
+"argumentos opcionales:\n"
+"  -h              muestra este mensaje\n"
+"  -l              enumera las tarjetas disponibles\n"
+"  -c              ejecuta solamente la comprobación/verificación del flash ("
+"omite cargar)\n"
+"  -b <baudio>       proporción del ancho de baudios serie (predet es 250.000)"
+"\n"
+"  -f <firmware>   ruta para klipper.bin\n"
 
 #: docs/SDCard_Updates.md:block 18 (paragraph)
 msgid ""
@@ -386,8 +410,9 @@ msgid "9"
 msgstr ""
 
 #: docs/SDCard_Updates.md:block 44 (table)
+#, fuzzy
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: docs/SDCard_Updates.md:block 44 (table)
 msgid "DATA2"
@@ -398,8 +423,9 @@ msgid "None (PU)*"
 msgstr ""
 
 #: docs/SDCard_Updates.md:block 44 (table)
+#, fuzzy
 msgid "2"
-msgstr ""
+msgstr "2"
 
 #: docs/SDCard_Updates.md:block 44 (table)
 msgid "CD/DATA3"
@@ -410,8 +436,9 @@ msgid "CS"
 msgstr ""
 
 #: docs/SDCard_Updates.md:block 44 (table)
+#, fuzzy
 msgid "3"
-msgstr ""
+msgstr "3"
 
 #: docs/SDCard_Updates.md:block 44 (table)
 msgid "CMD"
@@ -422,8 +449,9 @@ msgid "MOSI"
 msgstr ""
 
 #: docs/SDCard_Updates.md:block 44 (table)
+#, fuzzy
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: docs/SDCard_Updates.md:block 44 (table)
 msgid "+3.3V (VDD)"

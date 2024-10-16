@@ -4,17 +4,19 @@
 # Alberto <aru_hackZ.official@zohomail.eu>, 2022.
 # Juan <benitesjn@gmail.com>, 2023.
 # L Garcia <unsaid.sorrels.0y@icloud.com>, 2024.
+# Francisco Serrador <fserrador@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: yifeiding@protonmail.com\n"
-"PO-Revision-Date: 2024-01-30 21:01+0000\n"
-"Last-Translator: L Garcia <unsaid.sorrels.0y@icloud.com>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/klipper/overview/es/>\n"
+"PO-Revision-Date: 2024-10-16 22:36+0000\n"
+"Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/klipper/overview/"
+"es/>\n"
 "Language: es\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.8-rc\n"
 
 msgid ""
 "Welcome to the Klipper documentation. If new to Klipper, start with the "
@@ -343,11 +345,11 @@ msgstr ""
 
 #: docs/Overview.md:block 6 (unordered list)
 msgid "[Octoprint](OctoPrint.md): Guide to installing Octoprint with Klipper."
-msgstr ""
+msgstr "[Octoprint](OctoPrint.md): Guía para instalar Octoprint con Klipper."
 
 #: docs/Overview.md:block 10 (unordered list)
 msgid "[Eddy Current Inductive probe](Eddy_Probe.md)"
-msgstr ""
+msgstr "[Prueba Eddy Inductivo Actual](Eddy_Probe.md)"
 
 #~ msgid ""
 #~ "[Exclude Object](Exclude_Object.md): The guide to the Exclude Objecs "

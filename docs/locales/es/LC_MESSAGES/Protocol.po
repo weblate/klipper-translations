@@ -1,17 +1,18 @@
-# Francisco Serrador <fserrador@gmail.com>, 2022.
+# Francisco Serrador <fserrador@gmail.com>, 2022, 2024.
 # Alberto <aru_hackZ.official@zohomail.eu>, 2022.
 # Francisco Javier Hoyos Arango <cofhal@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: yifeiding@protonmail.com\n"
-"PO-Revision-Date: 2023-10-17 04:11+0000\n"
-"Last-Translator: Francisco Javier Hoyos Arango <cofhal@gmail.com>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/klipper/protocol/es/>\n"
+"PO-Revision-Date: 2024-10-16 22:36+0000\n"
+"Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/klipper/protocol/"
+"es/>\n"
 "Language: es\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1\n"
+"X-Generator: Weblate 5.8-rc\n"
 
 #, fuzzy
 msgid ""
@@ -41,6 +42,9 @@ msgid ""
 "protocol itself. It describes how messages are declared, encoded in binary "
 "format (the \"compression\" scheme), and transmitted."
 msgstr ""
+"Esta página proporciona una descripción de alto nivel del mismo protocolo de "
+"mensajería Klipper. Describe como los mensajes se declaran, codificados en "
+"formato binario (el esquema «compresión»), y transmitido."
 
 msgid ""
 "The goal of the protocol is to enable an error-free communication channel "
@@ -96,13 +100,16 @@ msgid ""
 msgstr ""
 
 msgid "Declaring responses"
-msgstr ""
+msgstr "Declarar respuestas"
 
 msgid ""
 "To send information from the micro-controller to the host a \"response\" is "
 "generated. These are both declared and transmitted using the sendf() C "
 "macro. For example:"
 msgstr ""
+"Para enviar información desde el micro-controlador para el hospedaje se "
+"genera una «respuesta». Estas son ambas declaradas y transmitidas utilizando "
+"la macro C sendf(). Por ejemplo:"
 
 msgid ""
 "The above transmits a \"status\" response message that contains two integer "
@@ -140,13 +147,16 @@ msgid ""
 msgstr ""
 
 msgid "Declaring enumerations"
-msgstr ""
+msgstr "Declarando enumeraciones"
 
 msgid ""
 "Enumerations allow the host code to use string identifiers for parameters "
 "that the micro-controller handles as integers. They are declared in the "
 "micro-controller code - for example:"
 msgstr ""
+"Las enumeraciones permiten el código del hospedado utilice identificadores "
+"de cadena para parámetros que el micro-controlador manipula como enteros. "
+"Son declarados dentro del código micro-controlador – por ejemplo:"
 
 msgid ""
 "If the first example, the DECL_ENUMERATION() macro defines an enumeration "
@@ -164,34 +174,45 @@ msgid ""
 msgstr ""
 
 msgid "Declaring constants"
-msgstr ""
+msgstr "Declarando constantes"
 
 msgid "Constants can also be exported. For example, the following:"
 msgstr ""
+"Las constantes además pueden ser exportadas. Por ejemplo, las siguientes:"
 
 msgid ""
 "would export a constant named \"SERIAL_BAUD\" with a value of 250000 from "
 "the micro-controller to the host. It is also possible to declare a constant "
 "that is a string - for example:"
 msgstr ""
+"exportarían una constante con nombre «SERIAL_BAUD» con un valor de 250000 "
+"desde el micro-controlador para el hospedaje. Además es posible declarar una "
+"constante que es una cadena – por ejemplo:"
 
 msgid "Low-level message encoding"
-msgstr ""
+msgstr "Codificación de bajo nivel del mensaje"
 
 msgid ""
 "To accomplish the above RPC mechanism, each command and response is encoded "
 "into a binary format for transmission. This section describes the "
 "transmission system."
 msgstr ""
+"Para lograr el mecanismo RPC anterior, cada comando y respuesta está "
+"codificada en un formato binario para transmisión. Esta sección describe el "
+"sistema de transmisión."
 
 msgid "Message Blocks"
-msgstr ""
+msgstr "Bloques de Mensaje"
 
 msgid ""
 "All data sent from host to micro-controller and vice-versa are contained in "
 "\"message blocks\". A message block has a two byte header and a three byte "
 "trailer. The format of a message block is:"
 msgstr ""
+"Todos los datos enviados desde el hospedaje al micro-controlador y vice-"
+"versa son contenidos en «bloques de mensaje». Un bloque de mensaje tiene una "
+"cabecera de dos byte y una cola de tres byte. El formato de un bloque de "
+"mensaje es:"
 
 msgid ""
 "The length byte contains the number of bytes in the message block including "
@@ -232,7 +253,7 @@ msgid ""
 msgstr ""
 
 msgid "and encoded into the following eight VLQ integers:"
-msgstr ""
+msgstr "y codificado en los siguientes ocho enteros VLQ:"
 
 msgid ""
 "In order to encode and parse the message contents, both the host and micro-"
@@ -268,43 +289,52 @@ msgid ""
 msgstr ""
 
 msgid "Integer"
-msgstr ""
+msgstr "Entero"
 
 msgid "Encoded size"
-msgstr ""
+msgstr "Tamaño codificado"
 
+#, fuzzy
 msgid "-32 .. 95"
-msgstr ""
+msgstr "-32 .. 95"
 
+#, fuzzy
 msgid "1"
-msgstr ""
+msgstr "1"
 
+#, fuzzy
 msgid "-4096 .. 12287"
-msgstr ""
+msgstr "-4096 .. 12287"
 
+#, fuzzy
 msgid "2"
-msgstr ""
+msgstr "2"
 
+#, fuzzy
 msgid "-524288 .. 1572863"
-msgstr ""
+msgstr "-524288 .. 1572863"
 
+#, fuzzy
 msgid "3"
-msgstr ""
+msgstr "3"
 
+#, fuzzy
 msgid "-67108864 .. 201326591"
-msgstr ""
+msgstr "-67108864 .. 201326591"
 
+#, fuzzy
 msgid "4"
-msgstr ""
+msgstr "4"
 
+#, fuzzy
 msgid "-2147483648 .. 4294967295"
-msgstr ""
+msgstr "-2147483648 .. 4294967295"
 
 msgid "5"
 msgstr "5"
 
 msgid "Variable length strings"
-msgstr ""
+msgstr "Cadenas de longitud variable"
 
 msgid ""
 "As an exception to the above encoding rules, if a parameter to a command or "
@@ -312,12 +342,21 @@ msgid ""
 "VLQ integer. Instead it is encoded by transmitting the length as a VLQ "
 "encoded integer followed by the contents itself:"
 msgstr ""
+"Como una excepción para las anteriores reglas de codificación, si un "
+"parámetro para un comando o respuesta es una cadena dinámica entonces el "
+"parámetro no está codificado como un simple entero VLQ. En su lugar está "
+"codificado por trasmisión de longitud como un entero codificado de VLQ "
+"seguida por el mismo contenido:"
 
 msgid ""
 "The command descriptions found in the data dictionary allow both the host "
 "and micro-controller to know which command parameters use simple VLQ "
 "encoding and which parameters use string encoding."
 msgstr ""
+"Las descripciones de instrucción encontrada dentro del diccionario permite a "
+"ambos hospedaje y micro-controlador conocer cuales parámetros de comando "
+"utilizan codificación simple VQL y cuales parámetros utilizan la "
+"codificación de cadena."
 
 msgid "Data Dictionary"
 msgstr ""
@@ -377,7 +416,7 @@ msgid ""
 msgstr ""
 
 msgid "Message flow"
-msgstr ""
+msgstr "Flujo de mensajería"
 
 msgid ""
 "Message commands sent from host to micro-controller are intended to be "
@@ -430,6 +469,7 @@ msgid ""
 " message blocks."
 msgstr ""
 
+#, fuzzy
 msgid ""
 "set_digital_out pin=PA3 value=1\n"
 "set_digital_out pin=PA7 value=1\n"
@@ -437,6 +477,11 @@ msgid ""
 "queue_step oid=7 interval=7458 count=10 add=331\n"
 "queue_step oid=7 interval=11717 count=4 add=1281\n"
 msgstr ""
+"set_digital_out pin=PA3 value=1\n"
+"set_digital_out pin=PA7 value=1\n"
+"schedule_digital_out oid=8 clock=4000000 value=0\n"
+"queue_step oid=7 interval=7458 count=10 add=331\n"
+"queue_step oid=7 interval=11717 count=4 add=1281\n"
 
 msgid ""
 "DECL_COMMAND(command_update_digital_out, \"update_digital_out oid=%c "
@@ -449,19 +494,23 @@ msgid ""
 msgstr ""
 
 msgid "output(\"The value of %u is %s with size %u.\", x, buf, buf_len);\n"
-msgstr ""
+msgstr "output(\"El valor de %u es %s con tamaño %u.\", x, buf, buf_len);\n"
 
+#, fuzzy
 msgid ""
 "DECL_ENUMERATION(\"spi_bus\", \"spi\", 0);\n"
 "\n"
 "DECL_ENUMERATION_RANGE(\"pin\", \"PC0\", 16, 8);\n"
 msgstr ""
+"DECL_ENUMERATION(\"spi_bus\", \"spi\", 0);\n"
+"\n"
+"DECL_ENUMERATION_RANGE(\"pin\", \"PC0\", 16, 8);\n"
 
 msgid "DECL_CONSTANT(\"SERIAL_BAUD\", 250000);\n"
-msgstr ""
+msgstr "DECL_CONSTANT(\"SERIAL_BAUD\", 250000);\n"
 
 msgid "DECL_CONSTANT_STR(\"MCU\", \"pru\");\n"
-msgstr ""
+msgstr "DECL_CONSTANT_STR(\"MCU\", \"pru\");\n"
 
 msgid ""
 "<1 byte length><1 byte sequence><n-byte content><2 byte crc><1 byte sync>\n"
@@ -473,14 +522,20 @@ msgid ""
 "get_config\n"
 "get_clock\n"
 msgstr ""
+"update_digital_out oid=6 value=1\n"
+"update_digital_out oid=5 value=0\n"
+"get_config\n"
+"get_clock\n"
 
 msgid ""
 "<id_update_digital_out><6><1><id_update_digital_out><5><0><id_get_config><id_get_clock>\n"
 msgstr ""
+"<id_update_digital_out><6><1><id_update_digital_out><5><0><id_get_config><id_"
+"get_clock>\n"
 
 msgid "<VLQ encoded length><n-byte contents>\n"
-msgstr ""
+msgstr "<longitud de VLQ codificado><n-byte del contenido>\n"
 
 #: docs/Protocol.md:block 1 (header)
 msgid "Protocol"
-msgstr "protocolo"
+msgstr "Protocolo"

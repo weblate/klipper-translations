@@ -1,17 +1,19 @@
 # Alberto <aru_hackZ.official@zohomail.eu>, 2022.
 # Isaias Carrillo <icarrillo1304@gmail.com>, 2023.
 # Gael Caraballo <gcaraballo@alvic.net>, 2023.
+# Francisco Serrador <fserrador@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: yifeiding@protonmail.com\n"
-"PO-Revision-Date: 2023-04-27 15:49+0000\n"
-"Last-Translator: Gael Caraballo <gcaraballo@alvic.net>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/klipper/bed_mesh/es/>\n"
+"PO-Revision-Date: 2024-10-16 22:36+0000\n"
+"Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/klipper/bed_mesh/"
+"es/>\n"
 "Language: es\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.8-rc\n"
 
 msgid "Basic Configuration"
 msgstr "Configuración básica"
@@ -62,13 +64,16 @@ msgid "![bedmesh_rect_basic](img/bedmesh_rect_basic.svg)"
 msgstr ""
 
 msgid "Round beds"
-msgstr "Camas redondas"
+msgstr "Cauces redondeados"
 
 msgid ""
 "This example assumes a printer equipped with a round bed radius of 100mm. We"
 " will use the same probe offsets as the rectangular example, 24 mm on X and "
 "5 mm on Y."
 msgstr ""
+"Este ejemplo asume una impresora equipada con un radio de cauce redondeado a "
+"100mm. Utilizaremos el mismo desplazamiento de sondeo como el ejemplo "
+"rectangular, 24 mm en X y 5 mm en Y."
 
 msgid ""
 "`mesh_radius: 75` *Required* The radius of the probed mesh in mm, relative "
@@ -122,6 +127,8 @@ msgid ""
 "The illustration below shows how the options above are used to generate an "
 "interpolated mesh."
 msgstr ""
+"La ilustración siguiente muestra como las opciones anteriores son utilizadas "
+"para generar una malla interpolada."
 
 msgid "![bedmesh_interpolated](img/bedmesh_interpolated.svg)"
 msgstr ""
@@ -223,66 +230,78 @@ msgid "Bed Mesh Gcodes"
 msgstr ""
 
 msgid "Calibration"
-msgstr ""
+msgstr "Calibración"
 
 msgid ""
 "It is possible to specify mesh parameters to modify the probed area. The "
 "following parameters are available:"
 msgstr ""
+"Es posible especificar parámetros de malla para modificar el área de sondeo. "
+"Los parámetros siguientes están disponibles:"
 
 msgid "Rectangular beds (cartesian):"
-msgstr ""
+msgstr "Cauces rectangulares (cartesiano):"
 
+#, fuzzy
 msgid "`MESH_MIN`"
-msgstr ""
+msgstr "`MESH_MIN`"
 
+#, fuzzy
 msgid "`MESH_MAX`"
-msgstr ""
+msgstr "`MESH_MAX`"
 
+#, fuzzy
 msgid "`PROBE_COUNT`"
-msgstr ""
+msgstr "`PROBE_COUNT`"
 
 msgid "Round beds (delta):"
-msgstr ""
+msgstr "Redondear cauce (delta):"
 
 msgid "`MESH_RADIUS`"
-msgstr ""
+msgstr "`MESH_RADIUS`"
 
 msgid "`MESH_ORIGIN`"
-msgstr ""
+msgstr "`MESH_ORIGIN`"
 
 msgid "`ROUND_PROBE_COUNT`"
-msgstr ""
+msgstr "`ROUND_PROBE_COUNT`"
 
 msgid "All beds:"
-msgstr ""
+msgstr "Todos los cauces:"
 
 msgid "Profiles"
-msgstr ""
+msgstr "Perfiles"
 
 msgid "`BED_MESH_PROFILE REMOVE=default`"
-msgstr ""
+msgstr "`BED_MESH_PROFILE REMOVE=default`"
 
 msgid ""
 "Any other saved profile can be removed in the same fashion, replacing "
 "*default* with the named profile you wish to remove."
 msgstr ""
+"Cualquier perfil guardado puede ser retirado en la misma forma, sustituyendo "
+"*default* con el perfil nombrado que desea retirar."
 
 msgid "Output"
-msgstr ""
+msgstr "Salida"
 
 msgid "`BED_MESH_OUTPUT PGP=[0 | 1]`"
-msgstr ""
+msgstr "`BED_MESH_OUTPUT PGP=[0 | 1]`"
 
+#, fuzzy
 msgid ""
 "Outputs the current mesh state to the terminal. Note that the mesh itself is"
 " output"
 msgstr ""
+"Las salidas del estado lío actual para el terminal. Nótese que el lío mismo "
+"es la salida"
 
 msgid ""
 "The PGP parameter is shorthand for \"Print Generated Points\". If `PGP=1` is"
 " set, the generated probed points will be output to the terminal:"
 msgstr ""
+"El parámetro PGP está recortado para «Imprimir puntos generados». Si está "
+"puesto `PGP=1` los puntos probados generados serán extraídos al terminal:"
 
 msgid ""
 "The \"Tool Adjusted\" points refer to the nozzle location for each point, "
@@ -297,8 +316,9 @@ msgstr ""
 msgid "`BED_MESH_CLEAR`"
 msgstr ""
 
+#, fuzzy
 msgid "This gcode may be used to clear the internal mesh state."
-msgstr ""
+msgstr "Este gcode puede ser utilizado para vaciar el estado interno medio."
 
 msgid "Apply X/Y offsets"
 msgstr ""
@@ -325,11 +345,11 @@ msgstr ""
 
 #: docs/Bed_Mesh.md:block 1 (header)
 msgid "Bed Mesh"
-msgstr "Cama de malla"
+msgstr "Cauce de malla"
 
 #: docs/Bed_Mesh.md:block 49 (paragraph)
 msgid "Initiates the probing procedure for Bed Mesh Calibration."
-msgstr ""
+msgstr "Inicia el procedimiento de prueba para Calibración de Malla del Cauce."
 
 #: docs/Bed_Mesh.md:block 26 (paragraph)
 msgid ""
@@ -338,6 +358,11 @@ msgid ""
 "correctly follow the shape of the bed. The options below control the "
 "splitting behavior."
 msgstr ""
+"Malla del Cauce funciona interceptando comandos de movimiento de gcode y "
+"aplicando una transformación de su coordenada Z. Movimientos largos deben "
+"ser escindidos en movimientos más pequeños para seguir correctamente la "
+"forma del cauce. Las siguientes opciones controlan el comportamiento del "
+"desglose."
 
 #: docs/Bed_Mesh.md:block 3 (paragraph)
 msgid ""
