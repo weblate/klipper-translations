@@ -1,15 +1,15 @@
 # Isaac Castro Mateos <isaac@humanlearning.com>, 2021.
 # Matemática A3K <matematica.a3k@gmail.com>, 2021.
 # Alejandro Alcaide <alex@blueselene.com>, 2022.
-# gallegonovato <fran-carro@hotmail.es>, 2023.
+# gallegonovato <fran-carro@hotmail.es>, 2023, 2024.
 # Francisco Serrador <fserrador@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: yifeiding@protonmail.com\n"
 "POT-Creation-Date: 2021-07-13 12:32+0200\n"
-"PO-Revision-Date: 2024-09-23 18:54+0000\n"
-"Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
+"PO-Revision-Date: 2024-09-24 19:15+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/klipper/"
 "config_checks/es/>\n"
 "Language: es\n"
@@ -72,14 +72,14 @@ msgid ""
 "endstop_pin name - most printers will use a pullup resistor and the '^' "
 "should be present)."
 msgstr ""
-"Si el final de carrera no cambia en absoluto, entonces generalmente indica "
-"que el final de carrera está conectado a un alfiler diferente. Sin embargo, "
-"puede requerir también un cambio a la configuración del levantado del "
-"alfiler (el '^' al comienzo del nombre de endstop_pin - la mayoría de las "
-"impresoras usarán un resistor de levantado y el '^' estaría presente)."
+"Si el endstop no cambia en absoluto, generalmente indica que el endstop está "
+"conectado a un pin diferente. Sin embargo, también puede requerir un cambio "
+"en la configuración pullup del pin (el '^' al principio del nombre "
+"endstop_pin - la mayoría de las impresoras usarán una resistencia pullup y "
+"el '^' debería estar presente)."
 
 msgid "Verify stepper motors"
-msgstr "Verificar el motor a pasos"
+msgstr "Verificar motores paso a paso"
 
 msgid ""
 "If the stepper does not move at all, then verify the \"enable_pin\" and "
