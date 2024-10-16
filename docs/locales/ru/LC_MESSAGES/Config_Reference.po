@@ -5,24 +5,27 @@
 # xXx <xxx_xxx_xxxxxxxxx@mail.ru>, 2023.
 # Dr_Perry_Coke <dr.perrycoke@gmail.com>, 2023.
 # Michail Fedorov <fedorovmichail50@gmail.com>, 2024.
+# V R <hardorzz@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: yifeiding@protonmail.com\n"
-"PO-Revision-Date: 2024-04-28 03:07+0000\n"
-"Last-Translator: Michail Fedorov <fedorovmichail50@gmail.com>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/klipper/config_reference/ru/>\n"
+"PO-Revision-Date: 2024-09-28 04:15+0000\n"
+"Last-Translator: V R <hardorzz@gmail.com>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/klipper/"
+"config_reference/ru/>\n"
 "Language: ru\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 msgid ""
 "This document is a reference for options available in the Klipper config "
 "file."
 msgstr ""
-"This document is a reference for options available in the Klipper config "
-"file."
+"Этот документ является справочником по опциям, доступным в файле "
+"конфигурации Klipper."
 
 msgid ""
 "The descriptions in this document are formatted so that it is possible to "
