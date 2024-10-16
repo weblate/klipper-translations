@@ -1,20 +1,21 @@
 # Wivik <seb+weblate@zedas.fr>, 2021.
 # Phil Clifford <philip.clifford@gmail.com>, 2021, 2022.
 # MOULINIER <moulinier.r@gmail.com>, 2022.
-# jean-luc MATTEI <jlucm@free.fr>, 2022, 2023.
+# jean-luc MATTEI <jlucm@free.fr>, 2022, 2023, 2024.
 # Francis Poulizac <francis@poulizac.fr>, 2022, 2023.
 # Alfredo Monclus <alfredomonclus@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: yifeiding@protonmail.com\n"
-"PO-Revision-Date: 2023-12-27 15:10+0000\n"
-"Last-Translator: Alfredo Monclus <alfredomonclus@gmail.com>\n"
-"Language-Team: French <https://hosted.weblate.org/projects/klipper/config_reference/fr/>\n"
+"PO-Revision-Date: 2024-10-01 14:34+0000\n"
+"Last-Translator: jean-luc MATTEI <jlucm@free.fr>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/klipper/"
+"config_reference/fr/>\n"
 "Language: fr\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 msgid ""
 "This document is a reference for options available in the Klipper config "
@@ -7103,7 +7104,7 @@ msgstr ""
 
 #: docs/Config_Reference.md:block 200 (header)
 msgid "[axis_twist_compensation]"
-msgstr ""
+msgstr "[axis_twist_compensation]"
 
 #: docs/Config_Reference.md:block 201 (paragraph)
 msgid ""
@@ -7111,6 +7112,10 @@ msgid ""
 " See the [Axis Twist Compensation Guide](Axis_Twist_Compensation.md) for "
 "more detailed information regarding symptoms, configuration and setup."
 msgstr ""
+"Un outil pour compenser les lectures inexactes de la sonde en raison de la "
+"torsion de la structure en X. Voir le [Axis Twist Compensation "
+"Guide](Axis_Twist_Compensation.md) pour des informations plus détaillées sur "
+"les symptômes, la configuration et la mise en service."
 
 #: docs/Config_Reference.md:block 202 (code)
 msgid ""
@@ -7135,6 +7140,28 @@ msgid ""
 "#   calibration process. This parameter must be provided and is recommended to\n"
 "#   be near the center of the bed\n"
 msgstr ""
+"[axis_twist_compensation]\n"
+"#speed: 50\n"
+"#   Vitesse (en mm/s) des déplacements sans mesures pendant l'étape "
+"d'étalonnage.\n"
+"#   La valeur par défaut est de 50.\n"
+"#horizontal_move_z: 5\n"
+"#   La hauteur (en mm) à laquelle la tête doit se positionner\n"
+"#   avant de commencer une mesure. La valeur par défaut est de 5.\n"
+"calibrate_start_x: 20\n"
+"#   Définit la coordonnée minimum en X pour les mesures\n"
+"#   Ce doit être la coordonnée X qui positionne la buse à la position de\n"
+"#   départ des mesures. Ce paramètre est obligatoire.\n"
+"calibrate_end_x: 200\n"
+"#   Définit la coordonnée maximum en X pour les mesures\n"
+"#   Ce doit être la coordonnée X qui positionne la buse à la position de\n"
+"#   fin des mesures. Ce paramètre est obligatoire.\n"
+"calibrate_y: 112.5\n"
+"#   Définit la coordonnée Y de mesure\n"
+"#   Ce doit être la coordonnée Y qui positionne la buse à la position de\n"
+"#   mesures. Ce paramètre est obligatoire et il est conseillé de mettre une "
+"mesure\n"
+"#   proche du centre du plateau\n"
 
 #: docs/Config_Reference.md:block 212 (paragraph)
 msgid ""
@@ -7168,6 +7195,16 @@ msgid ""
 "MOTION_QUEUE=extruder EXTRUDER=<dual_carriage_extruder>\" or a similar "
 "command."
 msgstr ""
+"En outre, on pourrait utiliser les commandes \"SET_DUAL_CARRIAGE CARRIAGE=1 "
+"MODE=COPY\" ou \"SET_DUAL_CARRIAGE CARRIAGE=1 MODE=MIRROR\" pour activer le "
+"mode copie ou miroir du double chariot, auquel cas il suivra le mouvement du "
+"chariot 0 en conséquence. Ces commandes peuvent être utilisées pour imprimer "
+"deux pièces simultanément - soit deux pièces identiques (en mode COPY) ou "
+"des pièces miroirs (en mode MIRROR). Notez que les modes COPY et MIRROR "
+"nécessitent également la configuration appropriée de l'extrudeur sur le "
+"double chariot, qui peut généralement être atteint avec "
+"\"SYNC_EXTRUDER_MOTION MOTION_QUEUE=extruder EXTRUDER="
+"exedual_carriage_extruderю\" ou une commande similaire."
 
 #: docs/Config_Reference.md:block 215 (code)
 msgid ""
@@ -7198,7 +7235,7 @@ msgstr ""
 
 #: docs/Config_Reference.md:block 259 (header)
 msgid "AHT10/AHT20/AHT21 temperature sensor"
-msgstr ""
+msgstr "AHT10/AHT20/AHT21 capteur de température"
 
 #: docs/Config_Reference.md:block 260 (paragraph)
 msgid ""
@@ -7208,6 +7245,12 @@ msgid ""
 "[sample-macros.cfg](../config/sample-macros.cfg) for a gcode_macro that may "
 "be used to report humidity in addition to temperature."
 msgstr ""
+"AHT10/AHT20/AHT21 : capteurs environnementaux à deux fils (I2C). Notez que "
+"ces capteurs ne sont pas destinés à être utilisés avec des extrudeurs et des "
+"lits chauffants, mais plutôt pour surveiller la température ambiante (C) et "
+"l'humidité relative. Voir [sample-macros.cfg](../config/sample-macros.cfg) "
+"pour un gcode_macro qui peut être utilisé pour signaler l'humidité en plus "
+"de la température."
 
 #: docs/Config_Reference.md:block 261 (code)
 msgid ""
@@ -8518,8 +8561,9 @@ msgid ""
 msgstr ""
 
 #: docs/Config_Reference.md:block 446 (header)
+#, fuzzy
 msgid "ADS1220"
-msgstr ""
+msgstr "ADS1220"
 
 #: docs/Config_Reference.md:block 447 (paragraph)
 msgid ""
