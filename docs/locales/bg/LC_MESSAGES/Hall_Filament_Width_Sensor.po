@@ -1,15 +1,17 @@
 # Nikolai Danov <nikolaidanov67@gmail.com>, 2022.
+# Niolay Danov <nikdan@abv.bg>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: yifeiding@protonmail.com\n"
-"PO-Revision-Date: 2022-08-26 16:03+0000\n"
-"Last-Translator: Nikolai Danov <nikolaidanov67@gmail.com>\n"
-"Language-Team: Bulgarian <https://hosted.weblate.org/projects/klipper/hall_filament_width_sensor/bg/>\n"
+"PO-Revision-Date: 2024-10-10 20:55+0000\n"
+"Last-Translator: Niolay Danov <nikdan@abv.bg>\n"
+"Language-Team: Bulgarian <https://hosted.weblate.org/projects/klipper/"
+"hall_filament_width_sensor/bg/>\n"
 "Language: bg\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: docs/Hall_Filament_Width_Sensor.md:block 1 (header)
 msgid "Hall filament width sensor"
@@ -21,7 +23,7 @@ msgstr "Как работи?"
 
 #: docs/Hall_Filament_Width_Sensor.md:block 20 (header)
 msgid "Template for menu variables"
-msgstr ""
+msgstr "Шаблон за променливи в менюто"
 
 #: docs/Hall_Filament_Width_Sensor.md:block 21 (code)
 msgid ""
@@ -40,36 +42,44 @@ msgstr ""
 
 #: docs/Hall_Filament_Width_Sensor.md:block 22 (header)
 msgid "Calibration procedure"
-msgstr ""
+msgstr "Процедура за калибриране"
 
 #: docs/Hall_Filament_Width_Sensor.md:block 24 (ordered list)
 msgid "Insert first calibration rod (1.5 mm size) get first raw sensor value"
 msgstr ""
+"Поставете първата пръчка за калибриране (с размер 1,5 mm), за да получите "
+"първата необработена стойност на сензора"
 
 #: docs/Hall_Filament_Width_Sensor.md:block 24 (ordered list)
 msgid ""
 "Insert second calibration rod (2.0 mm size) get second raw sensor value"
 msgstr ""
+"Поставете втора пръчка за калибриране (с размер 2,0 mm), за да получите "
+"втората необработена стойност на сензора"
 
 #: docs/Hall_Filament_Width_Sensor.md:block 24 (ordered list)
 msgid "Save raw sensor values in config parameter `Raw_dia1` and `Raw_dia2`"
 msgstr ""
+"Записване на необработени стойности на сензорите в параметъра на "
+"конфигурацията `Raw_dia1` и `Raw_dia2`"
 
 #: docs/Hall_Filament_Width_Sensor.md:block 25 (header)
 msgid "How to enable sensor"
-msgstr ""
+msgstr "Как да активирате сензора"
 
 #: docs/Hall_Filament_Width_Sensor.md:block 26 (paragraph)
 msgid "By default, the sensor is disabled at power-on."
-msgstr ""
+msgstr "По подразбиране сензорът е деактивиран при включване на захранването."
 
 #: docs/Hall_Filament_Width_Sensor.md:block 28 (header)
 msgid "Logging"
-msgstr ""
+msgstr "Регистриране"
 
 #: docs/Hall_Filament_Width_Sensor.md:block 29 (paragraph)
 msgid "By default, diameter logging is disabled at power-on."
 msgstr ""
+"По подразбиране регистрирането на диаметъра е деактивирано при включване на "
+"захранването."
 
 #: docs/Hall_Filament_Width_Sensor.md:block 30 (paragraph)
 msgid ""
@@ -77,12 +87,18 @@ msgid ""
 "**DISABLE_FILAMENT_WIDTH_LOG** command to stop logging. To enable logging at"
 " power-on, set the `logging` parameter to `true`."
 msgstr ""
+"Издайте командата **ENABLE_FILAMENT_WIDTH_LOG**, за да стартирате "
+"регистрирането, и издайте командата **DISABLE_FILAMENT_WIDTH_LOG**, за да "
+"спрете регистрирането. За да разрешите воденето на дневник при включване на "
+"захранването, задайте параметъра `logging` на `true`."
 
 #: docs/Hall_Filament_Width_Sensor.md:block 31 (paragraph)
 msgid ""
 "Filament diameter is logged on every measurement interval (10 mm by "
 "default)."
 msgstr ""
+"Диаметърът на нишката се записва на всеки интервал на измерване (10 mm по "
+"подразбиране)."
 
 #: docs/Hall_Filament_Width_Sensor.md:block 3 (paragraph)
 msgid ""
@@ -90,12 +106,17 @@ msgid ""
 "[Thingiverse](https://www.thingiverse.com/thing:4138933), an assembly video "
 "is also available on [Youtube](https://www.youtube.com/watch?v=TDO9tME8vp4)"
 msgstr ""
+"Проектите можете да намерите в [Thingiverse](https://www.thingiverse.com/"
+"thing:4138933), а видеоклип за сглобяване е достъпен в [Youtube](https://www."
+"youtube.com/watch?v=TDO9tME8vp4)."
 
 #: docs/Hall_Filament_Width_Sensor.md:block 10 (paragraph)
 msgid ""
 "To get raw sensor value you can use menu item or "
 "**QUERY_RAW_FILAMENT_WIDTH** command in terminal."
 msgstr ""
+"За да получите суровата стойност на сензора, можете да използвате елемент от "
+"менюто или командата **QUERY_RAW_FILAMENT_WIDTH** в терминала."
 
 #: docs/Hall_Filament_Width_Sensor.md:block 4 (paragraph)
 msgid ""
@@ -103,12 +124,17 @@ msgid ""
 "Reference](Config_Reference.md#hall_filament_width_sensor) and [G-Code "
 "documentation](G-Codes.md#hall_filament_width_sensor)."
 msgstr ""
+"За да използвате сензора на Хол за широчина на влакното, прочетете [Config "
+"Reference](Config_Reference.md#hall_filament_width_sensor) и [G-Code "
+"documentation](G-Codes.md#hall_filament_width_sensor)."
 
 #: docs/Hall_Filament_Width_Sensor.md:block 14 (paragraph)
 msgid ""
 "To enable the sensor, issue **ENABLE_FILAMENT_WIDTH_SENSOR** command or set "
 "the `enable` parameter to `true`."
 msgstr ""
+"За да активирате сензора, издайте командата **ENABLE_FILAMENT_WIDTH_SENSOR** "
+"или задайте параметъра `enable` на `true`."
 
 #: docs/Hall_Filament_Width_Sensor.md:block 2 (paragraph)
 msgid ""
@@ -118,6 +144,12 @@ msgid ""
 "operation: two hall sensors work in differential mode, temperature drift "
 "same for sensor. Special temperature compensation not needed."
 msgstr ""
+"Този документ описва хост модула на сензора за ширина на нишката. Хардуерът, "
+"използван за разработването на този хост модул, се основава на два линейни "
+"сензора на Хол (например ss49e). Сензорите в тялото са разположени на "
+"противоположни страни. Принцип на работа: два сензора на Хол работят в "
+"диференциален режим, температурата се променя по един и същ начин за "
+"сензора. Не е необходима специална температурна компенсация."
 
 #: docs/Hall_Filament_Width_Sensor.md:block 6 (paragraph)
 msgid ""
@@ -127,6 +159,12 @@ msgid ""
 "connector on a ramps-like board with the analog11 and analog12 pins. You can"
 " use different pins and different boards."
 msgstr ""
+"Сензорът генерира два аналогови изхода въз основа на изчислената ширина на "
+"нишката. Сумата на изходното напрежение винаги е равна на откритата ширина "
+"на нишката. Приемащият модул следи промените в напрежението и регулира "
+"множителя на екструдиране. Използвам конектора aux2 на платка, подобна на "
+"рампа, с изводите analog11 и analog12. Можете да използвате различни щифтове "
+"и различни платки."
 
 #~ msgid ""
 #~ "This document describes Filament Width Sensor host module. Hardware used for"
