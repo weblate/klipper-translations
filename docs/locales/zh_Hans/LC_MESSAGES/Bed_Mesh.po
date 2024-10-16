@@ -2,26 +2,28 @@
 # Yifei Ding <dingyifeiair@gmail.com>, 2021, 2022, 2023.
 # Hosted Weblate <mfvotmjhcj@iubridge.com>, 2024.
 # "Neko.vecter" <Vecterfang@icloud.com>, 2024.
+# 云line <yunline@foxmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: yifeiding@protonmail.com\n"
 "POT-Creation-Date: 2021-06-28 08:28+0200\n"
-"PO-Revision-Date: 2024-04-30 17:07+0000\n"
-"Last-Translator: \"Neko.vecter\" <Vecterfang@icloud.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/klipper/bed_mesh/zh_Hans/>\n"
+"PO-Revision-Date: 2024-10-01 03:53+0000\n"
+"Last-Translator: 云line <yunline@foxmail.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
+"projects/klipper/bed_mesh/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5.3-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 msgid "Basic Configuration"
 msgstr "基本配置"
 
 msgid "Rectangular Beds"
-msgstr "矩形床"
+msgstr "矩形热床"
 
 msgid ""
 "This example assumes a printer with a 250 mm x 220 mm rectangular bed and a "
@@ -53,7 +55,7 @@ msgid "![bedmesh_rect_basic](img/bedmesh_rect_basic.svg)"
 msgstr "![矩形网床基本配置](img/bedmesh_rect_basic.svg)"
 
 msgid "Round beds"
-msgstr "圆形床"
+msgstr "圆形热床"
 
 msgid ""
 "This example assumes a printer equipped with a round bed radius of 100mm. We"
