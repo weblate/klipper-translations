@@ -1,16 +1,29 @@
-#
+# Тихон Титовец <titovetstixon@gmail.com>, 2024.
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8\n"
+msgstr ""
+"Report-Msgid-Bugs-To: yifeiding@protonmail.com\n"
+"PO-Revision-Date: 2024-10-04 14:37+0000\n"
+"Last-Translator: Тихон Титовец <titovetstixon@gmail.com>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/klipper/"
+"bootloader_entry/ru/>\n"
+"Language: ru\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.8-dev\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: docs/Bootloader_Entry.md:block 1 (header)
 msgid "Bootloader Entry"
-msgstr ""
+msgstr "Запись в загрузчик"
 
 #: docs/Bootloader_Entry.md:block 2 (paragraph)
 msgid ""
 "Klipper can be instructed to reboot into a [Bootloader](Bootloaders.md) in "
 "one of the following ways:"
 msgstr ""
+"Klipper можно дать команду перезагрузиться в [Bootloader](Bootloaders.md) "
+"одним из следующих способов:"
 
 #: docs/Bootloader_Entry.md:block 3 (header)
 msgid "Requesting the bootloader"

@@ -6,11 +6,12 @@
 # Dr_Perry_Coke <dr.perrycoke@gmail.com>, 2023.
 # Michail Fedorov <fedorovmichail50@gmail.com>, 2024.
 # V R <hardorzz@gmail.com>, 2024.
+# Тихон Титовец <titovetstixon@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: yifeiding@protonmail.com\n"
-"PO-Revision-Date: 2024-09-28 04:15+0000\n"
-"Last-Translator: V R <hardorzz@gmail.com>\n"
+"PO-Revision-Date: 2024-10-04 14:37+0000\n"
+"Last-Translator: Тихон Титовец <titovetstixon@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/klipper/"
 "config_reference/ru/>\n"
 "Language: ru\n"
@@ -4869,7 +4870,7 @@ msgstr ""
 
 #: docs/Config_Reference.md:block 327 (header)
 msgid "[pwm_cycle_time]"
-msgstr ""
+msgstr "Цикл PWM"
 
 #: docs/Config_Reference.md:block 328 (paragraph)
 msgid ""

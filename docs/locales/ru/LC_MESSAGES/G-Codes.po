@@ -9,17 +9,20 @@
 # Ворон Stars <voronstars1255@gmail.com>, 2023.
 # michailtoksovo <mikhailtoksovo@yandex.ru>, 2023.
 # Кирилл Еремеев <kirnet79@gmail.com>, 2024.
+# Тихон Титовец <titovetstixon@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: yifeiding@protonmail.com\n"
-"PO-Revision-Date: 2024-07-30 19:09+0000\n"
-"Last-Translator: Кирилл Еремеев <kirnet79@gmail.com>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/klipper/g-codes/ru/>\n"
+"PO-Revision-Date: 2024-10-04 14:37+0000\n"
+"Last-Translator: Тихон Титовец <titovetstixon@gmail.com>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/klipper/g-codes/"
+"ru/>\n"
 "Language: ru\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #, fuzzy
 msgid ""
@@ -369,6 +372,7 @@ msgid ""
 "`QUERY_PROBE`: Report the current status of the probe (\"triggered\" or "
 "\"open\")."
 msgstr ""
+"'Запрос_Пробы': Отчёт о текущем статусе пробы (задействована или открыта)"
 
 msgid ""
 "`PROBE_ACCURACY [PROBE_SPEED=<mm/s>] [SAMPLES=<count>] "
@@ -725,7 +729,7 @@ msgstr ""
 
 #: docs/G-Codes.md:block 16 (header)
 msgid "ACCELEROMETER_QUERY"
-msgstr ""
+msgstr "ОПРОС_АКСЕЛЕРОМЕТРА"
 
 #: docs/G-Codes.md:block 18 (header)
 msgid "ACCELEROMETER_DEBUG_READ"
@@ -759,7 +763,7 @@ msgstr ""
 
 #: docs/G-Codes.md:block 22 (header)
 msgid "[bed_mesh]"
-msgstr "[кровать_сетка]"
+msgstr "[сетка_стола]"
 
 #: docs/G-Codes.md:block 23 (paragraph)
 msgid ""
@@ -1048,7 +1052,7 @@ msgstr ""
 
 #: docs/G-Codes.md:block 107 (header)
 msgid "QUERY_FILAMENT_SENSOR"
-msgstr ""
+msgstr "Опрос сенсора (наличия) филамента"
 
 #: docs/G-Codes.md:block 108 (paragraph)
 msgid ""
@@ -1160,7 +1164,7 @@ msgstr ""
 
 #: docs/G-Codes.md:block 151 (header)
 msgid "QUERY_FILAMENT_WIDTH"
-msgstr ""
+msgstr "Запрос ширины филамента"
 
 #: docs/G-Codes.md:block 152 (paragraph)
 msgid "`QUERY_FILAMENT_WIDTH`: Return the current measured filament width."
@@ -1401,7 +1405,7 @@ msgstr ""
 
 #: docs/G-Codes.md:block 233 (header)
 msgid "PROBE"
-msgstr ""
+msgstr "Проба"
 
 #: docs/G-Codes.md:block 235 (header)
 msgid "QUERY_PROBE"
@@ -1409,11 +1413,11 @@ msgstr ""
 
 #: docs/G-Codes.md:block 237 (header)
 msgid "PROBE_ACCURACY"
-msgstr ""
+msgstr "Точность пробы"
 
 #: docs/G-Codes.md:block 239 (header)
 msgid "PROBE_CALIBRATE"
-msgstr ""
+msgstr "Калибровка пробы"
 
 #: docs/G-Codes.md:block 241 (header)
 msgid "Z_OFFSET_APPLY_PROBE"
@@ -1429,7 +1433,7 @@ msgstr ""
 
 #: docs/G-Codes.md:block 247 (header)
 msgid "[query_endstops]"
-msgstr ""
+msgstr "Запрос концевиков"
 
 #: docs/G-Codes.md:block 248 (paragraph)
 msgid ""
@@ -1439,7 +1443,7 @@ msgstr ""
 
 #: docs/G-Codes.md:block 250 (header)
 msgid "QUERY_ENDSTOPS"
-msgstr ""
+msgstr "Запрос концевиков"
 
 #: docs/G-Codes.md:block 252 (header)
 msgid "[resonance_tester]"
@@ -2437,7 +2441,7 @@ msgstr ""
 
 #: docs/G-Codes.md:block 281 (header)
 msgid "[pwm_cycle_time]"
-msgstr ""
+msgstr "Цикл PWM"
 
 #: docs/G-Codes.md:block 282 (paragraph)
 msgid ""
@@ -2552,13 +2556,16 @@ msgstr ""
 
 #: docs/G-Codes.md:block 401 (header)
 msgid "ABORT"
-msgstr ""
+msgstr "ПРЕРВАТЬ"
 
 #: docs/G-Codes.md:block 402 (paragraph)
+#, fuzzy
 msgid ""
 "`ABORT`: Aborts the calibration process, discarding the current results. "
 "This command is only available during drift calibration."
 msgstr ""
+"'ПРЕРВАТЬ': Прерывание калибровочного процесса, откат текущих результатов. "
+"Эта команда доступна только во время калибровки дрейфа"
 
 #: docs/G-Codes.md:block 403 (header)
 msgid "TEMPERATURE_PROBE_ENABLE"
