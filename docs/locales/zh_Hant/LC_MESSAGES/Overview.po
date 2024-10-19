@@ -1,16 +1,18 @@
 # Fred Chan <fred2088@gmail.com>, 2022.
 # hugoalh <hugoalh@users.noreply.hosted.weblate.org>, 2024.
+# Peter Dave Hello <hsu@peterdavehello.org>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: yifeiding@protonmail.com\n"
-"PO-Revision-Date: 2024-05-30 09:33+0000\n"
-"Last-Translator: hugoalh <hugoalh@users.noreply.hosted.weblate.org>\n"
-"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/klipper/overview/zh_Hant/>\n"
+"PO-Revision-Date: 2024-10-20 12:16+0000\n"
+"Last-Translator: Peter Dave Hello <hsu@peterdavehello.org>\n"
+"Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
+"projects/klipper/overview/zh_Hant/>\n"
 "Language: zh_Hant\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.8-rc\n"
 
 msgid ""
 "Welcome to the Klipper documentation. If new to Klipper, start with the "
@@ -250,7 +252,7 @@ msgstr "[CAN 匯流排故障排除](CANBUS_Troubleshooting.md)：CAN 匯流排�
 
 #: docs/Overview.md:block 6 (unordered list)
 msgid "[Octoprint](OctoPrint.md): Guide to installing Octoprint with Klipper."
-msgstr ""
+msgstr "[Octoprint](OctoPrint.md)：Octoprint 與 Klipper 的安裝指南。"
 
 #: docs/Overview.md:block 10 (unordered list)
 msgid "[Eddy Current Inductive probe](Eddy_Probe.md)"
