@@ -1,9 +1,16 @@
-#
+# Hideki Matsunobu <maznobu@gmail.com>, 2024.
 msgid ""
 msgstr ""
+"Report-Msgid-Bugs-To: yifeiding@protonmail.com\n"
+"PO-Revision-Date: 2024-10-19 05:50+0000\n"
+"Last-Translator: Hideki Matsunobu <maznobu@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/klipper/slicers/"
+"ja/>\n"
 "Language: ja\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.8-rc\n"
 
 msgid ""
 "This document provides some tips for configuring a \"slicer\" application "
@@ -125,7 +132,7 @@ msgstr ""
 
 #: docs/Slicers.md:block 1 (header)
 msgid "Slicers"
-msgstr ""
+msgstr "スライサー"
 
 #: docs/Slicers.md:block 24 (header)
 msgid "START_PRINT macros"
