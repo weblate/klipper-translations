@@ -6,7 +6,7 @@ Konfigurationsreferenz
 
 Bettnivellierung
 
-Resonanz-Kompensation
+Resonanz Kompensation
 
 Befehlsvorlagen
 

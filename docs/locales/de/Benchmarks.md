@@ -434,7 +434,7 @@ Die USB-Tests können die CPU-Kapazität eines Raspberry Pi übersteigen. Wenn S
 
 Die CAN-Bus-Tests können den USB-Host-Controller eines Raspberry Pi auslasten (beim Test über einen üblichen gs_usb-USB-zu-CAN-Bus-Adapter). Die nachfolgenden CAN-Bus-Leistungstests wurden, soweit zutreffend, mit console.py auf einem Desktop-Rechner durchgeführt, wobei ein USB-zu-CAN-Bus-Adapter über einen SuperSpeed-USB-Hub angeschlossen war.
 
-| MCU | Rate | Bau | Build Compiler |
+| 微控制器 | Rate | Bau | Build Compiler |
 | --- | --- | --- | --- |
 | ATMEGA2560 (serial) | 23K | b161a69e | avr-gcc (GCC) 4.8.1 |
 | SAM3x8e (serial) | 23K | b161a69e | arm-none-eabi-gcc (Fedora 7.1.0-5.fc27) 7.1.0 |
