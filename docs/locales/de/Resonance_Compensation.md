@@ -1,4 +1,4 @@
-# Resonanz-Kompensation
+# Resonanz Kompensation
 
 Klipper unterstützt Input Shaping - eine Technik, die verwendet werden kann, um Ringing (auch bekannt als Echoing, Ghosting oder Rippling) in Drucken zu reduzieren. Ringing ist ein Fehler beim Flächendruck, bei dem sich typischerweise Elemente wie Kanten als subtiles "Echo" auf einer gedruckten Oberfläche wiederholen:
 
@@ -48,7 +48,7 @@ Die Ringing-Frequenz kann von der Position des Modells auf dem Druckbett und von
 
 Ist die gemessene Ringing-Frequenz sehr niedrig (unter etwa 20-25 Hz), kann es sinnvoll sein, zunächst in eine Versteifung des Druckers oder eine Verringerung der bewegten Masse zu investieren - je nachdem, was in Ihrem Fall möglich ist -, bevor Sie mit der weiteren Abstimmung des Input Shapings fortfahren und die Frequenzen anschließend erneut messen. Für viele verbreitete Druckermodelle gibt es dafür bereits fertige Lösungen.
 
-Beachten Sie, dass sich die Ringing-Frequenzen ändern können, wenn am Drucker Änderungen vorgenommen werden, die die bewegte Masse oder die Steifigkeit des Systems beeinflussen, zum Beispiel:
+Beachten Sie, dass sich die Ringing-Frequenzen ändern können, wenn am Drucker Änderungen vorgenommen werden, die bewegte Masse oder die Steifigkeit des Systems beeinflussen, zum Beispiel:
 
 * Am Druckkopf werden Komponenten montiert, entfernt oder ausgetauscht, die seine Masse verändern, z. B. ein neuer (schwererer oder leichterer) Schrittmotor für einen Direktextruder, ein neues Hotend, ein schwerer Lüfter mit Luftführung usw.
 * Die Riemen gespannt sind.
@@ -57,7 +57,7 @@ Beachten Sie, dass sich die Ringing-Frequenzen ändern können, wenn am Drucker 
 
 Werden solche Änderungen vorgenommen, ist es ratsam, zumindest die Ringing-Frequenzen zu messen, um zu prüfen, ob sie sich verändert haben.
 
-### Input shaper Konfiguration
+### Input shaper Konfiguration (Resonanz-Messung)
 
 Nachdem die Ringing-Frequenzen für die X- und die Y-Achse gemessen wurden, können Sie Ihrer `printer.cfg` den folgenden Abschnitt hinzufügen:
 
@@ -120,7 +120,7 @@ Mit steigender Beschleunigung nimmt die Glättung zu und der tatsächliche Spalt
 
 In diesem Bild nimmt die Beschleunigung von links nach rechts zu, und der Spalt beginnt ab 3500 mm/s^2 zu wachsen (fünftes Band von links). Ein guter Wert für max_accel ist in diesem Fall also 3000 (mm/s^2), um übermäßige Glättung zu vermeiden.
 
-Halten Sie die Beschleunigung fest, bei der der Spalt in Ihrem Testdruck noch sehr klein ist. Sehen Sie Wülste, aber selbst bei hohen Beschleunigungen überhaupt keinen Spalt in der Wand, kann das an deaktiviertem Pressure Advance liegen, insbesondere bei Bowden-Extrudern. Wiederholen Sie den Druck in diesem Fall mit aktiviertem PA. Es kann auch die Folge eines falsch kalibrierten (zu hohen) Filamentflusses sein; das sollten Sie ebenfalls prüfen.
+Halten Sie die Beschleunigung fest, bei der Spalt in Ihrem Testdruck noch sehr klein ist. Sehen Sie Wülste, aber selbst bei hohen Beschleunigungen überhaupt keinen Spalt in der Wand, kann das an deaktiviertem Pressure Advance liegen, insbesondere bei Bowden-Extrudern. Wiederholen Sie den Druck in diesem Fall mit aktiviertem PA. Es kann auch die Folge eines falsch kalibrierten (zu hohen) Filamentflusses sein; das sollten Sie ebenfalls prüfen.
 
 Wählen Sie den kleineren der beiden Beschleunigungswerte (aus Ringing und Glättung) und tragen Sie ihn als `max_accel` in die printer.cfg ein.
 
@@ -258,7 +258,7 @@ Die meisten Anwender werden im Gegensatz zu den X- und Y-Shapern wahrscheinlich 
 
 ### Input shapers
 
-Dieser Abschnitt bietet einen kurzen Überblick über einige technische Aspekte der unterstützten Input Shaper. Die in Klipper verwendeten Input Shaper sind mit Ausnahme von MZV recht standardmäßig; eine ausführlichere Übersicht findet sich in den Artikeln, die die jeweiligen Shaper beschreiben.
+Dieser Abschnitt bietet einen kurzen Überblick über einige technische Aspekte der unterstützten Input Shaper. Die in Klipper verwendeten Input Shaper sind mit Ausnahme von MZV recht standardmäßig; eine ausführlichere Übersicht findet sich in den Artikeln, die jeweiligen Shaper beschreiben.
 
 MZV steht für einen Modified-ZV-Input-Shaper. Die klassische Definition des ZV-Shapers geht von zwei Impulsen und einer Gesamtdauer `t` aus, die 1/2 der gedämpften Schwingungsperiode `Td` entspricht. Es ist jedoch möglich, eine verallgemeinerte Form des ZV-Input-Shapers mit `n >= 3` Impulsen und einer beliebigen Gesamtdauer `t >= 0.5 * Td` zu konstruieren (wobei das Maximum von `t` vom Wert `n` abhängt) - siehe beispielsweise die SNA-ZV- und MIS-ZV-Input-Shaper, die als Spezialfälle einer allgemeineren Implementierung des MZV-Input-Shapers in Klipper betrachtet werden können. Die Standardparameter von MZV in Klipper sind `n=3`, `t=0.75` (von `Td`); dieser Shaper wurde als Zwischenstufe zwischen ZV und ZVD entwickelt und bietet eine bessere Schwingungsunterdrückung als ZV, wenn die ermittelten (gemessenen) Shaper-Parameter von den tatsächlich benötigten Werten des Druckers abweichen, sowie eine geringere Glättung als ZVD. Seine spezifische Dauer `t=0.75` liegt effektiv genau zwischen ZV (mit `t=0.5` von `Td`) und ZVD (`t=1` von `Td`) und funktioniert bei vielen realen 3D-Druckern gut. Erfahrene Anwender können jedoch die Standardparameter des MZV-Input-Shapers anpassen und andere Varianten ausprobieren, die für ihren spezifischen Drucker besser geeignet sein könnten (diese abweichenden Varianten werden z. B. als `mzv(n=3,t=0.8)` oder `mzv(n=5,t=1.1)` im Abschnitt `[input_shaper]` oder als Parameter des Befehls `SET_INPUT_SHAPER` angegeben, ebenso als Parameter für das Skript `~/klipper/scripts/calibrate_shaper.py`, z. B. als `--shapers='2hump_ei,3hump_ei,mzv(n=6,t=1.0)'`). Diese benutzerdefinierten Shaper-Parameter werden auch vom Skript `~/klipper/scripts/graph_shaper.py` über z. B. den Parameter `--shaper='mzv(n=3,t=0.6666666666)'` unterstützt.
 
